@@ -1,0 +1,1 @@
+module.exports='mongodb+srv://wahiba:wahiba12345@cluster0.0pi1z.mongodb.net/myecoDatabase?retryWrites=true&w=majority'
