@@ -4,9 +4,8 @@ const db = require("../models");
 const User = db.user;
 const Role = db.role;
 
-verifyToken = (req, res, next) => {
+let verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
-
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
   }
@@ -20,7 +19,7 @@ verifyToken = (req, res, next) => {
   });
 };
 
-isAdmin = (req, res, next) => {
+let isAdmin = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
@@ -51,7 +50,7 @@ isAdmin = (req, res, next) => {
   });
 };
 
-ismanager = (req, res, next) => {
+let isManager = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
@@ -85,6 +84,6 @@ ismanager = (req, res, next) => {
 const authJwt = {
   verifyToken,
   isAdmin,
-  ismanager
+  isManager
 };
 module.exports = authJwt;

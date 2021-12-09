@@ -30,7 +30,7 @@ exports.delete = (req, res) => {
 
 exports.update = (req, res) => {
     User.findByIdAndUpdate({
-            _id: req.params.id
+            _id: req.body._id
         }
         , {
             $set: {

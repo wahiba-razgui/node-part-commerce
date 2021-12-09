@@ -4,7 +4,6 @@ var Product= require("../models/products.model");
 exports.create = (req, res) => {
     const product = new Product(req.body);
     const validationResponse = product.joiValidate(req.body);
-    console.log(product);
     if (validationResponse.error) {
         res.status(400).send({message: validationResponse.error});
         return;
@@ -72,8 +71,7 @@ exports.update = (req, res) => {
         description: req.body.description,
         category:req.body.category,
         price:req.body.price,
-        quantity:req.body.quantity,
-        date:req.body.date
+        quantity:req.body.quantity
     };
     const validationResponse = product.joiValidate(objectToUpdate);
     if (validationResponse.error) {
@@ -82,7 +80,7 @@ exports.update = (req, res) => {
     }
     //product._id=req.params.id
     Product.findByIdAndUpdate({
-            _id: req.params.id
+            _id: req.body._id
         }
         , {
             $set: objectToUpdate

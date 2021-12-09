@@ -9,7 +9,7 @@ const cartSchema = Schema({
   userId: 'string'
 })
 
-tourschema.methods.joiValidate = (tour) => {
+cartSchema.methods.joiValidate = (tour) => {
     var Joi = require('joi');
     const schema = Joi.object({
         products: Joi.array().required(),
@@ -23,4 +23,4 @@ tourschema.methods.joiValidate = (tour) => {
     return schema.validate(cart)
 }
 
- module.exports = mongoose.model('Cart', CartSchema)
+ module.exports = mongoose.model('Cart', cartSchema)

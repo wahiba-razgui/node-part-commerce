@@ -4,7 +4,7 @@ var router = require("express").Router();
 module.exports = app => {
     // Create a new Hotel
     router.post("/", productsController.create);
-    router.put("/:id", productsController.update);
+    router.put("/", productsController.update);
 
     // Retrieve all products
     router.get("/",productsController.getAll);

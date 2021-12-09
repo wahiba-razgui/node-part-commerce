@@ -9,23 +9,18 @@ const  productSchema = Schema({
   category: 'string',
   price: 'number',
   quantity:'number',
-  date:'date'
-
-
 });
 
 
 productSchema.methods.joiValidate = (Product) => {
     var Joi = require('joi');
     const schema = Joi.object({
-        imagePath: Joi.string().required(),
+        imagePath: Joi.string(),
         title:Joi.string().required(),
         description: Joi.string(),
         category: Joi.string().required(),
         price: Joi.number().required(),
         quantity:Joi.number(),
-        date:Joi.date()
-
     });
     return schema.validate(Product)
 }

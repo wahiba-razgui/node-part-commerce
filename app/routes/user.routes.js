@@ -12,16 +12,16 @@ module.exports = function (app) {
         next();
     });
 
-    router.get("/", [authJwt.verifyToken, authJwt.isAdmin], userController.getAll);
+    router.get("/", [authJwt.verifyToken, authJwt.isManager || authJwt.isAdmin], userController.getAll);
 
     router.put('/',
         [
-            authJwt.verifyToken, authJwt.isAdmin,
+            authJwt.verifyToken, authJwt.isManager || authJwt.isAdmin,
             verifySignUp.checkDuplicateUsernameOrEmailOnUpdate,
             verifySignUp.checkRolesExisted
         ], userController.update);
 
-    router.delete('/:id', [authJwt.verifyToken, authJwt.isAdmin], userController.delete);
+    router.delete('/:id', [authJwt.verifyToken, authJwt.isManager || authJwt.isAdmin], userController.delete);
 
     app.use("/api/users", router);
 };
